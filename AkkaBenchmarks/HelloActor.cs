@@ -17,7 +17,7 @@ namespace AkkaBenchmarks
             => message
                 =>
                 {
-                    message.Tcs.TrySetResult("Hello!");
+                    message.Tcs.TrySetResult(Some);
                 };
         
         private Action<AskMessage> ReceiveAsk() 

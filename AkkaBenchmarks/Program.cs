@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Akka.Actor;
-using BenchmarkDotNet.Running;
+﻿using BenchmarkDotNet.Running;
 
 namespace AkkaBenchmarks
 {

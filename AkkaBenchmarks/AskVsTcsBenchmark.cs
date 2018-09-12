@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Akka.Actor;
 using BenchmarkDotNet.Attributes;
@@ -7,6 +6,7 @@ namespace AkkaBenchmarks
 {
     [InvocationCount(75000,25000)]
     [MarkdownExporter]
+    [MemoryDiagnoser]
     public class AskVsTcsBenchmark
     {
         private readonly ActorSystem system;
@@ -23,12 +23,12 @@ namespace AkkaBenchmarks
         [IterationSetup]
         public void IterationSetup()
         {
-            helloMessage = new HelloMessage {Tcs = new TaskCompletionSource<string>()};
+            helloMessage = new HelloMessage {Tcs = new TaskCompletionSource<object>()};
             askMessage = new AskMessage();
         }
         
         [Benchmark]
-        public async Task<string> TscTellBenchmark()
+        public async Task<object> TscTellBenchmark()
         {
             actor.Tell(helloMessage);
             return (await helloMessage.Tcs.Task);

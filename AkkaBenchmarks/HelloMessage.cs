@@ -4,6 +4,6 @@ namespace AkkaBenchmarks
 {
     public class HelloMessage
     {
-        public TaskCompletionSource<string> Tcs { get; set; }
+        public TaskCompletionSource<object> Tcs { get; set; }
     }
 }
